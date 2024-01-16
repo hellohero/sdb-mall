@@ -4,6 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
+import io.github.pixee.security.Filenames;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class WxMaMediaController {
         while (it.hasNext()) {
             try {
                 MultipartFile file = multiRequest.getFile(it.next());
-                File newFile = new File(Files.createTempDir(), file.getOriginalFilename());
+                File newFile = new File(Files.createTempDir(), Filenames.toSimpleFileName(file.getOriginalFilename()));
                 this.logger.info("filePath is ：" + newFile.toString());
                 file.transferTo(newFile);
                 WxMediaUploadResult uploadResult = this.service.getMediaService().uploadMedia(WxMaConstants.KefuMsgType.IMAGE, newFile);
