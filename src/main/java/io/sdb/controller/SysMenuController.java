@@ -16,6 +16,7 @@
 
 package io.sdb.controller;
 
+import io.github.pixee.security.Newlines;
 import io.sdb.common.annotation.SysLog;
 import io.sdb.common.exception.RRException;
 import io.sdb.common.utils.Constant;
@@ -78,7 +79,7 @@ public class SysMenuController extends AbstractController {
 		String headerKey = "Content-Disposition";
 		String headerValue = String.format("attachment; filename=\"%s\"",
 				"test");
-		response.setHeader(headerKey, headerValue);
+		response.setHeader(headerKey, Newlines.stripAll(headerValue));
 		// Copy the stream to the response's output stream.
 		try {
 			InputStream myStream = new FileInputStream(fullPath);
