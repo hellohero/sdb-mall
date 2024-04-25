@@ -1,5 +1,6 @@
 package io.sdb.controller;
 
+import io.github.pixee.security.Filenames;
 import io.sdb.common.exception.RRException;
 import io.sdb.common.utils.R;
 import io.sdb.enums.ResultEnum;
@@ -35,7 +36,7 @@ public class FileController {
         }
 
         //上传文件
-        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+        String suffix = Filenames.toSimpleFileName(file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf("."));
         String url = OSSFactory.build().uploadSuffix(file.getBytes(), suffix);
 
         //保存文件信息
