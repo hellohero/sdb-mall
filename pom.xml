@@ -52,6 +52,7 @@
 		<docker.image.base>java:8</docker.image.base>
 		<docker.image.push>false</docker.image.push>
 		<docker.expose>8080</docker.expose>
+		<versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
 	</properties>
 
 	<dependencies>
@@ -291,7 +292,11 @@
 			<artifactId>alipay-sdk-java</artifactId>
 			<version>3.3.49.ALL</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>io.github.pixee</groupId>
+			<artifactId>java-security-toolkit</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -403,5 +408,13 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.github.pixee</groupId>
+				<artifactId>java-security-toolkit</artifactId>
+				<version>${versions.java-security-toolkit}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
