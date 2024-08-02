@@ -17,6 +17,7 @@
 package io.sdb.controller;
 
 import com.google.gson.Gson;
+import io.github.pixee.security.Filenames;
 import io.sdb.common.exception.RRException;
 import io.sdb.common.utils.ConfigConstant;
 import io.sdb.common.utils.Constant;
@@ -117,7 +118,7 @@ public class SysOssController {
 		}
 
 		//上传文件
-		String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		String suffix = Filenames.toSimpleFileName(file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf("."));
 		String url = OSSFactory.build().uploadSuffix(file.getBytes(), suffix);
 
 		//保存文件信息
