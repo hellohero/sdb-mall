@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 
 public class JfEnjoy {
     /**
@@ -34,7 +35,7 @@ public class JfEnjoy {
             if ( ! path.exists() ) {
                 path.mkdirs();
             }
-            output = new BufferedWriter(new FileWriter(file));
+            output = Files.newBufferedWriter(file.toPath());
 
             Engine.use()
                     .setBaseTemplatePath(baseTemplatePath)
@@ -66,7 +67,7 @@ public class JfEnjoy {
             if ( ! path.exists() ) {
                 path.mkdirs();
             }
-            output = new BufferedWriter(new FileWriter(file));
+            output = Files.newBufferedWriter(file.toPath());
 
             output.write(data);
             return true;
