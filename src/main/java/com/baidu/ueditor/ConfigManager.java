@@ -1,5 +1,6 @@
 package com.baidu.ueditor;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -198,7 +199,7 @@ public final class ConfigManager {
 			
 			String tmpContent = null;
 			
-			while ( ( tmpContent = bfReader.readLine() ) != null ) {
+			while ( ( tmpContent = BoundedLineReader.readLine(bfReader, 5_000_000) ) != null ) {
 				builder.append( tmpContent );
 			}
 			
