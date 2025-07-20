@@ -1,5 +1,7 @@
 package com.baidu.ueditor.hunter;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
@@ -61,7 +63,7 @@ public class ImageHunter {
 		String suffix = null;
 		
 		try {
-			url = new URL( urlStr );
+			url = Urls.create(urlStr, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
 			if ( !validHost( url.getHost() ) ) {
 				return new BaseState( false, AppInfo.PREVENT_HOST );
